@@ -1,0 +1,18 @@
+Pose Reference Skills — NOTICE
+
+Images and pose metadata (everything under skills/*/images/ and the pose names in
+skills/*/references/catalog.csv) are the work of the original author ギア:
+    https://ai-pose-gallery.pages.dev/
+    https://x.com/giaaibusi
+Chinese translation of the metadata: https://github.com/anhao/ai-pose-gallery-zh
+
+This repository only converts the images (PNG -> WebP) and packages them as Agent Skills.
+No rights to the images are claimed. NON-COMMERCIAL USE ONLY. The upstream license
+explicitly excludes the images and original data from its MIT grant.
+
+Some skills (sexy, couple, all, parts of upper) contain adult (18+) pose references.
+For adult artistic and motion reference only; never use them for content involving
+minors or anything unlawful.
+
+If you are the rights holder and object to this repository, open an issue and the
+content will be removed promptly.
