@@ -28,14 +28,43 @@ skills/pose-reference-standard/
 
 ## 安装
 
-Claude Code（任选一个或多个技能）：
+每个技能目录（`SKILL.md` + `references/` + `images/`）就是一个完整技能包，复制整个目录即可，**不要只复制 `SKILL.md`**。
+
+### 方式一：手动安装
+
+**Claude Code**：个人技能放 `~/.claude/skills/`（所有项目可用），项目技能放 `<项目>/.claude/skills/`（随仓库共享）。
+
+只装一个技能（稀疏克隆，只下载该技能的图片，standard 约 12 MB）：
+
+```bash
+git clone --depth 1 --filter=blob:none --sparse https://github.com/jasoncai0/pose-reference-skills.git
+cd pose-reference-skills && git sparse-checkout set skills/pose-reference-standard
+mkdir -p ~/.claude/skills && cp -r skills/pose-reference-standard ~/.claude/skills/
+```
+
+装全部 5 个技能（约 144 MB）：
 
 ```bash
 git clone --depth 1 https://github.com/jasoncai0/pose-reference-skills.git
-cp -r pose-reference-skills/skills/pose-reference-standard ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -r pose-reference-skills/skills/pose-reference-* ~/.claude/skills/
 ```
 
-其他支持 `SKILL.md` 的 Agent 平台：把整个技能目录（含 `images/`）作为技能包上传即可。
+装好后重启 Claude Code（或新开会话），输入 `/skills` 能看到 `pose-reference-*` 即安装成功。
+
+**其他支持 `SKILL.md` 的 Agent 平台**：把技能目录整个拷到该平台的技能目录，或打包成 zip 后通过平台的「上传技能」入口导入（zip 内保持 `SKILL.md` 在根目录、`images/` 与 `references/` 同级）。
+
+### 方式二：让 Agent 帮你安装
+
+把下面这段话直接发给 Claude Code（或其他能执行命令的 Agent），按需改技能名：
+
+```text
+请帮我安装姿势参考技能：从 https://github.com/jasoncai0/pose-reference-skills 稀疏克隆，
+只取 skills/pose-reference-standard 目录（含 images/ 和 references/，不要只拷 SKILL.md），
+复制到 ~/.claude/skills/pose-reference-standard。完成后列出该目录的 SKILL.md、
+references/catalog.csv 和 images/ 下的文件数（应为 365），并确认 catalog.csv 里的图片路径都能找到对应文件。
+```
+
+要装全部技能，把「只取 skills/pose-reference-standard」改成「取 skills/ 下全部 pose-reference-* 目录」，各技能应有的图片数见上方表格。
 
 ## 用法示例
 
